@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Irfan Ghanim — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D1114;
+    --surface:#151A1E;
+    --surface-2:#1C2328;
+    --border:#2A3339;
+    --border-soft:#232B30;
+    --text:#E8ECEE;
+    --text-dim:#8B99A1;
+    --text-faint:#5A6670;
+    --blue:#5B8DEF;
+    --blue-dim:#3D5C99;
+    --amber:#E8A33D;
+    --green:#5FBF8F;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-position:-1px -1px;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--blue-dim);color:#fff;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(13,17,20,.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  nav{
+    max-width:1080px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--font-mono);font-size:14px;letter-spacing:.05em;color:var(--text);
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);}
+  .navlinks{display:flex;gap:28px;font-family:var(--font-mono);font-size:13px;color:var(--text-dim);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--blue);}
+  @media (max-width:640px){ .navlinks{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding-top:80px;position:relative;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);font-size:13px;color:var(--blue);
+    letter-spacing:.08em;margin-bottom:22px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:24px;height:1px;background:var(--blue);}
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(40px,7vw,84px);
+    line-height:1.02;
+    letter-spacing:-.02em;
+    margin-bottom:18px;
+  }
+  h1 span{color:var(--blue);}
+  .role{
+    font-family:var(--font-mono);font-size:clamp(14px,2vw,18px);color:var(--text-dim);
+    margin-bottom:30px;max-width:620px;
+  }
+  .role b{color:var(--text);font-weight:500;}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px;
+  }
+  .chip{
+    font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);
+    border:1px solid var(--border);padding:7px 14px;border-radius:3px;
+    background:var(--surface);
+  }
+  .hero-links{display:flex;flex-wrap:wrap;gap:14px;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;
+    padding:12px 22px;border-radius:3px;border:1px solid var(--border);
+    display:inline-flex;align-items:center;gap:8px;transition:.2s;
+  }
+  .btn.primary{background:var(--blue);border-color:var(--blue);color:#0D1114;font-weight:600;}
+  .btn.primary:hover{background:#79A3F2;}
+  .btn.ghost{color:var(--text-dim);}
+  .btn.ghost:hover{border-color:var(--blue);color:var(--blue);}
+
+  .scroll-cue{
+    position:absolute;bottom:36px;left:32px;font-family:var(--font-mono);
+    font-size:11px;color:var(--text-faint);display:flex;align-items:center;gap:10px;
+  }
+  .scroll-cue .bar{width:1px;height:30px;background:var(--text-faint);position:relative;overflow:hidden;}
+  .scroll-cue .bar::after{content:'';position:absolute;top:-30px;left:0;width:100%;height:30px;background:var(--blue);animation:scrollbar 1.8s infinite;}
+  @keyframes scrollbar{to{top:30px;}}
+
+  /* ---------- section shell ---------- */
+  section{padding:110px 0;border-top:1px solid var(--border-soft);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:56px;}
+  .sec-num{font-family:var(--font-mono);color:var(--blue);font-size:14px;}
+  .sec-title{font-family:var(--font-display);font-size:clamp(26px,3.4vw,38px);font-weight:600;}
+  .sec-line{flex:1;height:1px;background:var(--border);}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--text-dim);font-size:16px;margin-bottom:18px;max-width:56ch;}
+  .about-grid strong{color:var(--text);font-weight:500;}
+  .facts{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;height:fit-content;}
+  .fact{display:flex;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border-soft);font-family:var(--font-mono);font-size:13px;background:var(--surface);}
+  .fact:last-child{border-bottom:none;}
+  .fact span:first-child{color:var(--text-faint);}
+  .fact span:last-child{color:var(--text);text-align:right;}
+
+  /* ---------- experience timeline ---------- */
+  .tl-item{display:grid;grid-template-columns:150px 1fr;gap:32px;padding-bottom:44px;position:relative;}
+  .tl-item:not(:last-child)::before{content:'';position:absolute;left:150px;top:8px;bottom:-36px;width:1px;background:var(--border);margin-left:5px;}
+  .tl-item::after{content:'';position:absolute;left:150px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);margin-left:1px;}
+  .tl-date{font-family:var(--font-mono);font-size:12.5px;color:var(--text-faint);padding-top:2px;}
+  .tl-body h3{font-family:var(--font-display);font-size:19px;font-weight:600;margin-bottom:4px;}
+  .tl-body .org{font-family:var(--font-mono);font-size:13px;color:var(--amber);margin-bottom:14px;}
+  .tl-body ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .tl-body li{color:var(--text-dim);font-size:14.5px;padding-left:18px;position:relative;}
+  .tl-body li::before{content:'▸';position:absolute;left:0;color:var(--blue);font-size:12px;top:2px;}
+  @media (max-width:640px){
+    .tl-item{grid-template-columns:1fr;}
+    .tl-item::before,.tl-item::after{display:none;}
+  }
+
+  /* ---------- signature: VALOR terminal ---------- */
+  .valor-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  @media (max-width:860px){.valor-wrap{grid-template-columns:1fr;}}
+  .valor-copy .tag{font-family:var(--font-mono);font-size:12px;color:var(--amber);border:1px solid var(--amber);display:inline-block;padding:4px 10px;border-radius:3px;margin-bottom:18px;}
+  .valor-copy h3{font-family:var(--font-display);font-size:30px;margin-bottom:14px;}
+  .valor-copy p{color:var(--text-dim);margin-bottom:14px;font-size:15.5px;max-width:48ch;}
+  .valor-copy .taglist{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+
+  .term{
+    background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,.6);
+  }
+  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:var(--surface-2);border-bottom:1px solid var(--border);}
+  .term-dot{width:10px;height:10px;border-radius:50%;}
+  .term-bar .t1{background:#E8615D;} .term-bar .t2{background:#E8B23D;} .term-bar .t3{background:#5FBF8F;}
+  .term-title{margin-left:8px;font-family:var(--font-mono);font-size:12px;color:var(--text-faint);}
+  .term-body{padding:22px 20px;font-family:var(--font-mono);font-size:13.5px;min-height:210px;}
+  .term-body .line{white-space:pre-wrap;color:var(--text-dim);}
+  .term-body .kw{color:var(--blue);} .term-body .str{color:var(--green);} .term-body .cm{color:var(--text-faint);}
+  .term-body .out{color:var(--amber);}
+  .term-body .prompt{color:var(--blue);}
+  .cursor{display:inline-block;width:7px;height:14px;background:var(--blue);animation:blink 1s step-end infinite;vertical-align:text-bottom;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  @media (max-width:760px){.proj-grid{grid-template-columns:1fr;}}
+  .card{
+    border:1px solid var(--border);border-radius:6px;padding:26px 24px;background:var(--surface);
+    position:relative;transition:border-color .25s, transform .25s;
+  }
+  .card:hover{border-color:var(--blue-dim);transform:translateY(-3px);}
+  .card::before,.card::after{content:'';position:absolute;width:10px;height:10px;border-color:var(--border);}
+  .card::before{top:-1px;left:-1px;border-top:1px solid var(--blue);border-left:1px solid var(--blue);opacity:0;transition:opacity .25s;}
+  .card:hover::before{opacity:1;}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+  .card h4{font-family:var(--font-display);font-size:18px;font-weight:600;}
+  .card .link-out{font-family:var(--font-mono);font-size:12px;color:var(--text-faint);border:1px solid var(--border);padding:5px 9px;border-radius:3px;white-space:nowrap;}
+  .card .link-out:hover{color:var(--blue);border-color:var(--blue);}
+  .card p{color:var(--text-dim);font-size:14px;margin-bottom:16px;}
+  .card .stack{display:flex;flex-wrap:wrap;gap:6px;}
+  .card .stack span{font-family:var(--font-mono);font-size:11px;color:var(--text-faint);border:1px solid var(--border-soft);padding:3px 8px;border-radius:3px;}
+  .card .metric{font-family:var(--font-mono);font-size:12px;color:var(--green);margin-bottom:12px;}
+  .card.wide{grid-column:1/-1;}
+
+  /* ---------- skills ---------- */
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
+  .skill-cell{background:var(--surface);padding:22px;}
+  .skill-cell .cat{font-family:var(--font-mono);font-size:11.5px;color:var(--amber);margin-bottom:14px;letter-spacing:.05em;}
+  .skill-cell .items{display:flex;flex-wrap:wrap;gap:8px;}
+  .skill-cell .items span{font-family:var(--font-mono);font-size:12.5px;color:var(--text-dim);border:1px solid var(--border);padding:5px 10px;border-radius:3px;}
+
+  /* ---------- education ---------- */
+  .edu{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;border:1px solid var(--border);border-radius:6px;padding:28px;background:var(--surface);}
+  .edu h3{font-family:var(--font-display);font-size:20px;margin-bottom:6px;}
+  .edu .org{font-family:var(--font-mono);font-size:13px;color:var(--blue);margin-bottom:14px;}
+  .edu .items{display:flex;flex-wrap:wrap;gap:8px;max-width:560px;}
+  .edu .items span{font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);border:1px solid var(--border-soft);padding:4px 9px;border-radius:3px;}
+  .edu .year{font-family:var(--font-mono);font-size:13px;color:var(--text-faint);}
+
+  /* ---------- footer / contact ---------- */
+  footer{padding:90px 0 60px;}
+  .contact-inner{text-align:center;}
+  .contact-inner .sec-num{display:block;margin-bottom:18px;}
+  footer h2{font-family:var(--font-display);font-size:clamp(30px,5vw,52px);margin-bottom:22px;}
+  footer h2 span{color:var(--blue);}
+  footer .role-line{font-family:var(--font-mono);color:var(--text-dim);margin-bottom:38px;}
+  .contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:70px;}
+  .foot-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--font-mono);font-size:12px;color:var(--text-faint);border-top:1px solid var(--border-soft);padding-top:24px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="dot"></span> A. GHANIM</div>
+    <div class="navlinks">
+      <a href="#work">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;padding-top:0;">
+    <div class="eyebrow">SOFTWARE DEVELOPER · SHARJAH, UAE</div>
+    <h1>Ali Irfan<br><span>Ghanim.</span></h1>
+    <div class="role">Computer Science graduate building <b>cloud systems</b>, <b>AI-integrated products</b>, and <b>IIoT prediction models</b> — with published research and a habit of shipping things end to end.</div>
+    <div class="hero-meta">
+      <div class="chip">Cloud & DevOps</div>
+      <div class="chip">LLM Integration</div>
+      <div class="chip">IIoT / Predictive Maintenance</div>
+      <div class="chip">IEEE Published Author</div>
+    </div>
+    <div class="hero-links">
+      <a class="btn primary" href="mailto:alialghanim2004@gmail.com">Email me →</a>
+      <a class="btn ghost" href="https://ieeexplore.ieee.org/document/11346225" target="_blank" rel="noopener">Read published paper</a>
+      <a class="btn ghost" href="#projects">View projects</a>
+    </div>
+    <div class="scroll-cue"><div class="bar"></div> SCROLL</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">About</h2><div class="sec-line"></div></div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm a <strong>Computer Science graduate from the University of Sharjah</strong>, with hands-on experience spanning software development, cloud infrastructure, AI integration, and database engineering.</p>
+        <p>During my internship at a UAE real estate company, I took a project from <strong>zero to production</strong> — designing the database, building the interface, deploying it on Google Cloud, and layering in an AI assistant that could answer property queries using Claude as its reasoning engine.</p>
+        <p>Outside of client work, I co-authored research on <strong>IoT predictive maintenance optimization</strong>, published in IEEE Xplore, and spent a course building a fully custom programming language from the ground up — because sometimes the best way to understand compilers is to invent one.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="fact"><span>Location</span><span>Sharjah / Dubai, UAE</span></div>
+        <div class="fact"><span>Degree</span><span>B.Sc. Computer Science, 2026</span></div>
+        <div class="fact"><span>Focus</span><span>Cloud · AI Systems · IIoT</span></div>
+        <div class="fact"><span>Languages</span><span>Arabic (Native), English</span></div>
+        <div class="fact"><span>Publication</span><span>IEEE Xplore, 2025</span></div>
+        <div class="fact"><span>Email</span><span>alialghanim2004@gmail.com</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="work">
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Experience</h2><div class="sec-line"></div></div>
+    <div class="tl-item reveal">
+      <div class="tl-date">FEB 2026 —<br>MAR 2026</div>
+      <div class="tl-body">
+        <h3>Software Development Intern</h3>
+        <div class="org">Homesphere Real Estate LLC · Sharjah, UAE</div>
+        <ul>
+          <li>Owned end-to-end development of a custom CRM platform — from mapping business requirements and structuring the database through to building the interface and deploying live on Google Cloud Platform.</li>
+          <li>Built an AI conversational assistant for the company website so visitors could ask property questions, browse listings, and schedule viewings — later upgraded to run on Claude (Anthropic) as its knowledge engine.</li>
+          <li>Set up and managed the cloud environment: virtual machines, network configuration, firewall policy, and the deployment pipeline from local development into production.</li>
+          <li>Integrated Google Calendar into the CRM so the sales team could schedule and track property viewings without leaving the platform.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE: VALOR -->
+  <section id="valor">
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">A language of my own</h2><div class="sec-line"></div></div>
+    <div class="valor-wrap">
+      <div class="valor-copy reveal">
+        <div class="tag">SIDE PROJECT</div>
+        <h3>VALOR — a medieval fantasy programming language</h3>
+        <p>Built on Racket for a Programming Languages & Paradigms course, VALOR reimagines every keyword through the lens of knights and quests: functions are <em>spells</em>, conditionals are <em>quests</em> and <em>lest</em>, loops are <em>crusades</em>, and <code>print</code> is <em>herald</em>.</p>
+        <p>Full implementation: a lexer, a recursive-descent parser building an AST, and a tree-walking evaluator — plus four custom themed built-ins.</p>
+        <div class="taglist">
+          <div class="chip">Racket</div>
+          <div class="chip">Lexer / Parser / Evaluator</div>
+          <div class="chip">Language Design</div>
+        </div>
+      </div>
+      <div class="term reveal">
+        <div class="term-bar">
+          <div class="term-dot t1"></div><div class="term-dot t2"></div><div class="term-dot t3"></div>
+          <div class="term-title">valor.quest</div>
+        </div>
+        <div class="term-body" id="valorTerm"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Projects & Research</h2><div class="sec-line"></div></div>
+    <div class="proj-grid">
+
+      <div class="card wide reveal">
+        <div class="card-top">
+          <h4>Enhanced ACO for Multi-Classifier Predictive Maintenance in Industrial IoT</h4>
+          <a class="link-out" href="https://ieeexplore.ieee.org/document/11346225" target="_blank" rel="noopener">IEEE Xplore ↗</a>
+        </div>
+        <div class="metric">99.91% accuracy · 99.92% precision · 99.90% recall (ACO + Decision Tree)</div>
+        <p>Senior research project proposing an Enhanced Ant Colony Optimization algorithm that jointly tunes feature selection and hyperparameters for Decision Tree, SVM, and Logistic Regression classifiers on the AI4I 2020 Predictive Maintenance dataset. Peer-reviewed and published in IEEE Xplore, 2025.</p>
+        <div class="stack"><span>Python</span><span>Ant Colony Optimization</span><span>Scikit-learn</span><span>IIoT Data</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top"><h4>GKSO for IIoT Predictive Maintenance</h4></div>
+        <div class="metric">Up to 94.8% accuracy · 94.1% precision</div>
+        <p>Junior-year research applying the Genghis Khan Shark Optimizer — a novel nature-inspired metaheuristic — to tune a logistic regression classifier's feature weights for predicting machine failure across five IIoT failure modes.</p>
+        <div class="stack"><span>Python</span><span>Metaheuristics</span><span>NumPy / SciPy</span><span>Google Colab</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top">
+          <h4>Pneumonia Detection Model</h4>
+          <a class="link-out" href="https://github.com/omar-Eissa787/pneumonia" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p>Collaborative machine learning project applying image classification techniques to detect pneumonia from chest imaging data.</p>
+        <div class="stack"><span>Python</span><span>Machine Learning</span><span>Image Classification</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top">
+          <h4>WebProj — Interactive 3D Web Space</h4>
+          <a class="link-out" href="https://github.com/Tyr2k4/WebProj" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p>Front-end coursework project exploring 3D scenes and interactivity in the browser, built with vanilla JavaScript and CSS.</p>
+        <div class="stack"><span>JavaScript</span><span>CSS3</span><span>HTML5</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top"><h4>University Development Portfolio</h4></div>
+        <p>A range of coursework projects: responsive front-end interfaces in HTML/CSS/JS, low-level Assembly work covering CPU operations and memory management, and interactive Power BI dashboards for data analysis.</p>
+        <div class="stack"><span>HTML/CSS/JS</span><span>Assembly</span><span>Power BI</span><span>Excel</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Skills</h2><div class="sec-line"></div></div>
+    <div class="skill-grid">
+      <div class="skill-cell reveal">
+        <div class="cat">PROGRAMMING</div>
+        <div class="items"><span>C++</span><span>Python</span><span>JavaScript</span></div>
+      </div>
+      <div class="skill-cell reveal">
+        <div class="cat">WEB DEVELOPMENT</div>
+        <div class="items"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
+      </div>
+      <div class="skill-cell reveal">
+        <div class="cat">CLOUD & DEVOPS</div>
+        <div class="items"><span>Google Cloud Platform</span><span>VM Configuration</span><span>Firewall Rules</span><span>CI/CD Pipelines</span><span>Git</span></div>
+      </div>
+      <div class="skill-cell reveal">
+        <div class="cat">AI DEVELOPMENT</div>
+        <div class="items"><span>LLM Integration</span><span>Conversational Agent Design</span><span>Prompt Engineering</span><span>RAG</span></div>
+      </div>
+      <div class="skill-cell reveal">
+        <div class="cat">DATA & REPORTING</div>
+        <div class="items"><span>Power BI</span><span>Microsoft Excel</span></div>
+      </div>
+      <div class="skill-cell reveal">
+        <div class="cat">CS FOUNDATIONS</div>
+        <div class="items"><span>OOP</span><span>SDLC</span><span>Database Design</span><span>IoT Systems</span><span>Networking</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Education</h2><div class="sec-line"></div></div>
+    <div class="edu reveal">
+      <div>
+        <h3>B.Sc. in Computer Science</h3>
+        <div class="org">University of Sharjah, UAE</div>
+        <div class="items">
+          <span>Software Engineering</span><span>Data Structures</span><span>Web Development</span>
+          <span>Database Systems</span><span>Artificial Intelligence</span><span>Cloud Computing</span><span>Computer Networks</span>
+        </div>
+      </div>
+      <div class="year">2026</div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap contact-inner">
+    <span class="sec-num">07</span>
+    <h2>Let's build<br>something <span>real.</span></h2>
+    <div class="role-line">Open to software development, cloud engineering, and applied AI roles.</div>
+    <div class="contact-links">
+      <a class="btn primary" href="mailto:alialghanim2004@gmail.com">alialghanim2004@gmail.com</a>
+      <a class="btn ghost" href="https://ieeexplore.ieee.org/document/11346225" target="_blank" rel="noopener">IEEE Publication ↗</a>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Ali Irfan Ghanim</div>
+      <div>Sharjah, UAE</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target);} });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // VALOR terminal typing sequence
+  const termEl = document.getElementById('valorTerm');
+  const script = [
+    {t:'cm', text:'// a quest to check if a knight can joust'},
+    {t:'code', text:'spell <span class="kw">joust_ready</span>(stamina) quest'},
+    {t:'code', text:'    stamina <span class="kw">mightier?</span> 20'},
+    {t:'code', text:'<span class="kw">lest</span>'},
+    {t:'code', text:'    herald "Rest, brave knight."'},
+    {t:'code', text:'bestow glory'},
+    {t:'blank'},
+    {t:'prompt', text:'&gt; run joust_ready(35)'},
+    {t:'out', text:'Rest, brave knight is false → GLORY (ready to joust)'},
+  ];
+  let idx=0, char=0, started=false;
+
+  function typeNext(){
+    if(idx>=script.length) return;
+    const item = script[idx];
+    if(item.t==='blank'){
+      termEl.innerHTML += '<div class="line">&nbsp;</div>';
+      idx++; char=0;
+      setTimeout(typeNext, 200);
+      return;
+    }
+    if(char===0){
+      const lineDiv = document.createElement('div');
+      lineDiv.className = 'line ' + (item.t==='cm'?'cm':item.t==='out'?'out':item.t==='prompt'?'prompt':'');
+      lineDiv.id = 'l'+idx;
+      termEl.appendChild(lineDiv);
+    }
+    const target = document.getElementById('l'+idx);
+    // reveal by chars using a temp plain-text version for cm/out/prompt, else full html at once for code lines with tags
+    if(item.t==='code'){
+      target.innerHTML = item.text; // contains markup, insert directly for reliability
+      idx++; char=0;
+      setTimeout(typeNext, 260);
+      return;
+    }
+    char += 3;
+    target.textContent = item.text.slice(0, char);
+    if(char < item.text.length){
+      setTimeout(typeNext, 18);
+    } else {
+      idx++; char=0;
+      setTimeout(typeNext, 320);
+    }
+  }
+
+  const termObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !started){
+        started = true;
+        setTimeout(typeNext, 400);
+      }
+    });
+  },{threshold:0.4});
+  termObserver.observe(document.getElementById('valor'));
+</script>
+
+</body>
+</html>
