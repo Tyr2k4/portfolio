@@ -245,7 +245,7 @@
 
   <!-- HERO -->
   <section class="hero" style="border-top:none;padding-top:0;">
-    <div class="eyebrow">SOFTWARE DEVELOPER · SHARJAH, UAE</div>
+    <div class="eyebrow">SOFTWARE DEVELOPER · DUBAI, UAE</div>
     <h1>Ali Irfan<br><span>Ghanim.</span></h1>
     <div class="role">Computer Science graduate building <b>cloud systems</b>, <b>AI-integrated products</b>, and <b>IIoT prediction models</b> — with published research and a habit of shipping things end to end.</div>
     <div class="hero-meta">
@@ -272,7 +272,7 @@
         <p>Outside of client work, I co-authored research on <strong>IoT predictive maintenance optimization</strong>, published in IEEE Xplore, and spent a course building a fully custom programming language from the ground up — because sometimes the best way to understand compilers is to invent one.</p>
       </div>
       <div class="facts reveal">
-        <div class="fact"><span>Location</span><span>Sharjah / Dubai, UAE</span></div>
+        <div class="fact"><span>Location</span><span>Dubai, UAE</span></div>
         <div class="fact"><span>Degree</span><span>B.Sc. Computer Science, 2026</span></div>
         <div class="fact"><span>Focus</span><span>Cloud · AI Systems · IIoT</span></div>
         <div class="fact"><span>Languages</span><span>Arabic (Native), English</span></div>
@@ -289,7 +289,7 @@
       <div class="tl-date">FEB 2026 —<br>MAR 2026</div>
       <div class="tl-body">
         <h3>Software Development Intern</h3>
-        <div class="org">Homesphere Real Estate LLC · Sharjah, UAE</div>
+        <div class="org">Homesphere Real Estate LLC · DUBAI, UAE</div>
         <ul>
           <li>Owned end-to-end development of a custom CRM platform — from mapping business requirements and structuring the database through to building the interface and deploying live on Google Cloud Platform.</li>
           <li>Built an AI conversational assistant for the company website so visitors could ask property questions, browse listings, and schedule viewings — later upgraded to run on Claude (Anthropic) as its knowledge engine.</li>
@@ -300,25 +300,26 @@
     </div>
   </section>
 
-  <!-- SIGNATURE: VALOR -->
+  <!-- SIGNATURE: SPHEREAI -->
   <section id="valor">
-    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">A language of my own</h2><div class="sec-line"></div></div>
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">An AI agent grounded in reality</h2><div class="sec-line"></div></div>
     <div class="valor-wrap">
       <div class="valor-copy reveal">
-        <div class="tag">SIDE PROJECT</div>
-        <h3>VALOR — a medieval fantasy programming language</h3>
-        <p>Built on Racket for a Programming Languages & Paradigms course, VALOR reimagines every keyword through the lens of knights and quests: functions are <em>spells</em>, conditionals are <em>quests</em> and <em>lest</em>, loops are <em>crusades</em>, and <code>print</code> is <em>herald</em>.</p>
-        <p>Full implementation: a lexer, a recursive-descent parser building an AST, and a tree-walking evaluator — plus four custom themed built-ins.</p>
+        <div class="tag">FLAGSHIP PROJECT</div>
+        <h3>SphereAI — a RAG-powered real estate assistant</h3>
+        <p>Built during my internship at Homesphere Real Estate, then rebuilt as a standalone, security-hardened open-source project. A retrieval-augmented assistant that answers property questions using <em>real</em> listing data — every answer is grounded in retrieved context, not the model's imagination.</p>
+        <p>Full RAG pipeline: listings embedded into a local FAISS vector index, Gemini generating answers strictly from retrieved matches plus chat history. Reviewed end-to-end for public release — no hardcoded secrets, prompt-injection-resistant context handling, sandboxed file access, scrubbed logging.</p>
         <div class="taglist">
-          <div class="chip">Racket</div>
-          <div class="chip">Lexer / Parser / Evaluator</div>
-          <div class="chip">Language Design</div>
+          <div class="chip">LangChain</div>
+          <div class="chip">FAISS</div>
+          <div class="chip">Gemini API</div>
+          <div class="chip">Streamlit</div>
         </div>
       </div>
       <div class="term reveal">
         <div class="term-bar">
           <div class="term-dot t1"></div><div class="term-dot t2"></div><div class="term-dot t3"></div>
-          <div class="term-title">valor.quest</div>
+          <div class="term-title">sphereai — chat</div>
         </div>
         <div class="term-body" id="valorTerm"></div>
       </div>
@@ -326,6 +327,7 @@
   </section>
 
   <!-- PROJECTS -->
+
   <section id="projects">
     <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Projects & Research</h2><div class="sec-line"></div></div>
     <div class="proj-grid">
@@ -434,7 +436,7 @@
     </div>
     <div class="foot-bottom">
       <div>© 2026 Ali Irfan Ghanim</div>
-      <div>Sharjah, UAE</div>
+      <div>DUBAI, UAE</div>
     </div>
   </div>
 </footer>
@@ -446,18 +448,15 @@
   },{threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-  // VALOR terminal typing sequence
+  // SphereAI terminal typing sequence
   const termEl = document.getElementById('valorTerm');
   const script = [
-    {t:'cm', text:'// a quest to check if a knight can joust'},
-    {t:'code', text:'spell <span class="kw">joust_ready</span>(stamina) quest'},
-    {t:'code', text:'    stamina <span class="kw">mightier?</span> 20'},
-    {t:'code', text:'<span class="kw">lest</span>'},
-    {t:'code', text:'    herald "Rest, brave knight."'},
-    {t:'code', text:'bestow glory'},
+    {t:'cm', text:'// live property Q&A, grounded in real listing data'},
+    {t:'prompt', text:'&gt; Any 2-bedroom units in Sharjah under AED 900k?'},
+    {t:'code', text:'<span class="kw">retrieve</span>(query) → faiss_index.similarity_search(k=4)'},
+    {t:'code', text:'<span class="kw">grounding</span> → 3 matching listings found'},
     {t:'blank'},
-    {t:'prompt', text:'&gt; run joust_ready(35)'},
-    {t:'out', text:'Rest, brave knight is false → GLORY (ready to joust)'},
+    {t:'out', text:'Found 3 matches: Pearl Residences (2BR, AED 850k, ready Q3 2026), Marina Heights (2BR, AED 875k) — want details on either?'},
   ];
   let idx=0, char=0, started=false;
 
